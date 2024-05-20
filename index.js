@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import './src/database/database.js'
+import path from 'path'
+import { fileURLToPath } from 'url';
 
 //1- configurar un puerto
 const app= express();
@@ -18,6 +20,9 @@ app.use(morgan('dev'))//datos extras en la terminal
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 //configurar un archivo estatico
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+app.use(express.static(path.join(__dirname,'/public')))
 
 //3- crear las rutas
 //http://localhost:4001/prueba
