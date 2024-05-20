@@ -1,18 +1,8 @@
 import { Router } from "express";
-
+import { listarProductos } from "../controllers/productos.controllers.js";
 const router = Router();
 
-// app.get('/prueba',(req, res)=>{
-//     console.log('Prueba de solicitud get')
-//     //enviar una respuesta
-//     res.send('desde mi backend de rolling coffee')
-//     })
-    
 //crear las rutas
-router.route('/prueba').get((req, res)=>{
-        console.log('Prueba de solicitud get')
-        //enviar una respuesta
-        res.send('desde mi backend de rolling coffee')
-        })
+router.route('/prueba').get(listarProductos);
 
 export default router
