@@ -1,10 +1,18 @@
 import Producto from "../database/models/producto.js";
 
-export const listarProductos = (req, res) => {
-  console.log("Prueba de solicitud get");
-  //enviar una respuesta
-  res.send("desde mi backend de rolling coffee");
+export const listarProductos = async(req, res) => {
+  try{
+    //pedirle a la BD los productos
+    const productos = await Producto.find();
+    // enviar la respuesta con los productos
+    res.status(200).json(productos);
+   
+  }catch(error){
+    console.error(error)
+    res.status(500).json({mensaje: 'Ocurrio un error al listar los productos'})
+  }
 };
+
 export const crearProducto = async(req, res) => {
   try {
     //validar los datos del producto del ----

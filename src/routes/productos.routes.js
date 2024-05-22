@@ -4,5 +4,5 @@ const router = Router();
 
 //crear las rutas
 router.route('/prueba').get(listarProductos);
-router.route('/productos').post(crearProducto)
+router.route('/productos').post(crearProducto).get(listarProductos)
 export default router
