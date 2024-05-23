@@ -76,6 +76,6 @@ export const editarProducto = async (req, res) => {
     console.error(error);
     res.status(500).json({
       mensaje: "Ocurrio un error, no se pudo crear el producto",
-    });
+    });git 
   }
 };
