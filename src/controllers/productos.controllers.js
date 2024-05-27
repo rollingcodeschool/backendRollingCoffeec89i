@@ -76,3 +76,23 @@ export const editarProducto = async (req, res) => {
     });git 
   }
 };
+
+export const borrarProducto = async(req, res)=>{
+  try{
+    //verificar si existe el id
+    const productoBuscado = await Producto.findById(req.params.id);
+    //quiero saber si productoBuscado es null
+    if (!productoBuscado) {
+      return res
+        .status(400)
+        .json({ mensaje: `El producto con id: ${req.params.id} no existe` });
+    }
+    //solicitar eliminar el producto de la BD
+    await Producto.findByIdAndDelete(req.params.id)
+    //respondemos al frontend
+    res.status(200).json({mensaje:'El producto fue eliminado correctamente'})
+  }catch(error){
+    console.error(error);
+    res.status(500).json({mensaje: 'Ocurrio un error al intentar borrar un producto'})
+  }
+}
