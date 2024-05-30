@@ -39,13 +39,6 @@ export const obtenerProducto = async (req, res) => {
 
 export const crearProducto = async (req, res) => {
   try {
-    //validar los datos del producto del body
-    const errors = validationResult(req);
-    //quiero saber si hay errores, isEmpty()
-    if(!errors.isEmpty()){
-      return res.status(400).json({errores: errors.array() })
-    }
-
     //le vamos a pedir a la bd crear el producto
     const productoNuevo = new Producto(req.body);
     await productoNuevo.save();
